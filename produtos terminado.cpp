@@ -28,7 +28,7 @@ void exibirProdutos(const produto produtos[], int quantidadeAtual) { // funcao p
     }
 }
 
-float calcularValorTotal(const produto produtos[], int quantidadeAtual) { // const produto produtos - array de produtos
+float calcularValorTotal(const produto produtos[], int quantidadeAtual) { 
     float valorTotal = 0.0;  
     for (int i = 0; i < quantidadeAtual; i++) {  // inicia com a variavel para o total como 0 e precorre o array de produtos
         valorTotal += produtos[i].preco * produtos[i].quantidade; // multiplicando  o preço pela quantidade e soma o valor
