@@ -35,40 +35,5 @@ float calcularValorTotal(const produto produtos, int quantidadeAtual){
         ValorTotal += produtos.preco * produtos.quantidade;
     }
     
-    cout << "O valor totao do stock da loja é: " << ValorTotal << endl;
-
-}
-
-
-
-
-
-int main(){
-produto produto;
-int quantidadeAtual=0;
-
-int escolha;
-
-cout << "1-adicionar um produto" << endl;
-cout << "2-exibir todos os produtos" << endl;
-cout << "3-calcula e exibe o valor total do stock" << endl;
-
-cin >> escolha;
-
-switch (escolha) {
-            case 1:
-                adicionarProduto(produto, quantidadeAtual);
-                break;
-            case 2:
-                exibirProdutos(produto, quantidadeAtual);
-                break;
-            case 3:
-                cout << "O valor total do stock da loja é: " << calcularValorTotal(produto, quantidadeAtual ) << endl;
-                break;
-            
-            default:
-                
-                break;
-        }
-
+    return
 }
