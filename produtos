@@ -53,6 +53,8 @@ cout << "1-adicionar um produto" << endl;
 cout << "2-exibir todos os produtos" << endl;
 cout << "3-calcula e exibe o valor total do stock" << endl;
 
+cin >> escolha;
+
 switch (escolha) {
             case 1:
                 adicionarProduto(produto, quantidadeAtual);
