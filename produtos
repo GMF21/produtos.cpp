@@ -1,0 +1,72 @@
+#include <iostream>
+
+using namespace std;
+
+struct produto{
+    string nome;
+    float preco;
+    int quantidade;
+
+};
+
+
+void adicionarProduto(produto produtos, int& quantidadeAtual){
+
+    cout << "nome do produto: " << endl;
+    cin >> produtos.nome;
+    cout << "preço do produto: " << endl;
+    cin >> produtos.preco;
+    cout << "Quantidade atual em stock: " << endl;
+    cin >> quantidadeAtual;
+
+}
+
+void exibirProdutos(const produto produtos, int quantidadeAtual){
+    cout << "nome: " << produtos.nome << endl;
+    cout << "preço: " << produtos.preco << endl;
+    cout << "quantidade: " << quantidadeAtual << endl;
+}
+
+float calcularValorTotal(const produto produtos, int quantidadeAtual){
+    float ValorTotal;
+
+    for (int i = 1; i < quantidadeAtual; i++)
+    {
+        ValorTotal += produtos.preco * produtos.quantidade;
+    }
+    
+    cout << "O valor totao do stock da loja é: " << ValorTotal << endl;
+
+}
+
+
+
+
+
+int main(){
+produto produto;
+int quantidadeAtual=0;
+
+int escolha;
+
+cout << "1-adicionar um produto" << endl;
+cout << "2-exibir todos os produtos" << endl;
+cout << "3-calcula e exibe o valor total do stock" << endl;
+
+switch (escolha) {
+            case 1:
+                adicionarProduto(produto, quantidadeAtual);
+                break;
+            case 2:
+                exibirProdutos(produto, quantidadeAtual);
+                break;
+            case 3:
+                cout << "O valor total do stock da loja é: " << calcularValorTotal(produto, quantidadeAtual ) << endl;
+                break;
+            
+            default:
+                
+                break;
+        }
+
+}
