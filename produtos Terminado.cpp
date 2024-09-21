@@ -8,7 +8,7 @@ struct produto { //estrutura
     int quantidade;
 };
 
-void adicionarProduto(produto produtos[], int& quantidadeAtual) {
+void adicionarProduto(produto produtos[], int& quantidadeAtual) { //variavel do tipo inteiro que guarda quantos produtos ja foram adicionados , (&) significa que as mudanças na variavel dentro da funçao refletam fora dela 
     cout << "Nome do produto: ";
     cin >> produtos[quantidadeAtual].nome;
     cout << "Preço do produto: ";
@@ -18,7 +18,7 @@ void adicionarProduto(produto produtos[], int& quantidadeAtual) {
     quantidadeAtual++;
 }
 
-void exibirProdutos(const produto produtos[], int quantidadeAtual) {
+void exibirProdutos(const produto produtos[], int quantidadeAtual) { 
     for (int i = 0; i < quantidadeAtual; i++) {  // ciclo for para numerar os produtos direito sempre que for mais do q 1 , produto 1,produto 2 ...
         cout << "Produto " << i+1 << ":" << endl;
         cout << "Nome: " << produtos[i].nome << endl;
