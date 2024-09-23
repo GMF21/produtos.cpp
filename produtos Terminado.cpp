@@ -19,7 +19,7 @@ void adicionarProduto(produto produtos[], int& quantidadeAtual) { //variavel do 
 }
 
 void exibirProdutos(const produto produtos[], int quantidadeAtual) { 
-    for (int i = 0; i < quantidadeAtual; i++) {  // ciclo for para numerar os produtos direito sempre que for mais do q 1 , produto 1,produto 2 ...
+    for (int i = 0; i < quantidadeAtual; i++) {  // ciclo for para numerar os produtos direito sempre que for mais do q 1 , produto 1,produto 2 ... e mostrar os produtos
         cout << "Produto " << i+1 << ":" << endl;
         cout << "Nome: " << produtos[i].nome << endl;
         cout << "Preço: " << produtos[i].preco << endl;
