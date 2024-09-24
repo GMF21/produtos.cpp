@@ -10,7 +10,7 @@ struct produto { //estrutura
 
 void adicionarProduto(produto produtos[], int& quantidadeAtual) { //variavel do tipo inteiro que guarda quantos produtos ja foram adicionados , (&) significa que as mudanças na variavel dentro da funçao refletam fora dela 
     cout << "Nome do produto: ";
-    cin >> produtos[quantidadeAtual].nome;
+    cin >> produtos[quantidadeAtual].nome;    // info guardadas na posicao do array quantidadeAtual
     cout << "Preço do produto: ";
     cin >> produtos[quantidadeAtual].preco;
     cout << "Quantidade em estoque: ";
