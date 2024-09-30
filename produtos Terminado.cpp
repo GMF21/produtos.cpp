@@ -40,7 +40,6 @@ void salvarProdutos(const produto produtos[], int quantidadeAtual) {
 
     for (int i = 0; i < quantidadeAtual; i++) {
         file << i+1 << ",";
-        file << i+1 << ":" << ",";
         file << produtos[i].nome << ",";
         file << produtos[i].preco << ",";
         file << produtos[i].quantidade << ",";
