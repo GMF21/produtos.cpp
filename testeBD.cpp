@@ -3,15 +3,16 @@
 
 using namespace std;
 
-struct produto { // Estrutura de produto
+struct produto { //estrutura 
+    int Id;
     string nome;
     float preco;
     int quantidade;
 };
 
-void adicionarProduto(produto produtos[], int& quantidadeAtual) {
+void adicionarProduto(produto produtos[], int& quantidadeAtual) { //variavel do tipo inteiro que guarda quantos produtos ja foram adicionados , (&) significa que as mudanças na variavel dentro da funçao refletam fora dela 
     cout << "Nome do produto: ";
-    cin >> produtos[quantidadeAtual].nome;
+    cin >> produtos[quantidadeAtual].nome;    // info guardadas na posicao do array quantidadeAtual
     cout << "Preço do produto: ";
     cin >> produtos[quantidadeAtual].preco;
     cout << "Quantidade em estoque: ";
@@ -19,48 +20,35 @@ void adicionarProduto(produto produtos[], int& quantidadeAtual) {
     quantidadeAtual++;
 }
 
-void salvarProduto(produto produtos[], int quantidadeAtual) {
-    char escolha;
-    cout << "Deseja criar um novo ficheiro (N) ou utilizar o ficheiro existente (E)? ";
-    cin >> escolha;
-
-    ofstream file;
-    if (escolha == 'N' || escolha == 'n') {
-        file.open("produtos.txt", ios::out);  // Sobrescreve o arquivo
-        cout << "Novo ficheiro criado, sobrescrevendo o anterior." << endl;
-    } else if (escolha == 'E' || escolha == 'e') {
-        file.open("produtos.txt", ios::app);  // Abre o arquivo no modo de adição
-        cout << "Utilizando o ficheiro existente, adicionando ao final." << endl;
-    } else {
-        cout << "Opção inválida! O ficheiro não foi modificado." << endl;
-        return;
-    }
-
-    if (!file) {
-        cout << "Erro ao abrir o ficheiro!" << endl;
-        return;
-    }
-
-    for (int i = 0; i < quantidadeAtual; i++) {
-        file << i+1 << "," << produtos[i].nome << "," << produtos[i].quantidade << "," 
-             << produtos[i].preco << endl;
-        file.close();
-    }
-    
-    
-    
-
-    
-}
-
-void exibirProdutos(const produto produtos[], int quantidadeAtual) { 
-    for (int i = 0; i < quantidadeAtual; i++) {
-        cout << "Produto " << i+1 << ":" << endl;
+void exibirProdutos(const produto produtos[], int quantidadeAtual) {  // Const e para nao ser alterado e usar so os valores
+    for (int i = 0; i < quantidadeAtual; i++) {  // mostrar os produtos
+        cout << "Produto " << i+1 << ":" << endl; // para numerar os produtos direito sempre que for mais do q 1 , produto 1,produto 2 ... e
+        
         cout << "Nome: " << produtos[i].nome << endl;
         cout << "Preço: " << produtos[i].preco << endl;
         cout << "Quantidade: " << produtos[i].quantidade << endl;
         cout << "-------------------------" << endl;
     }
+}
+void salvarProdutos(const produto produtos[], int quantidadeAtual) {
+    ofstream file("produtos.txt");  
+
+    if (!file.is_open()) {  // Verificar se o arquivo abriu corretamente
+        cout << "Erro ao abrir o arquivo para salvar os produtos." << endl;
+        return;
+    }
+
+    for (int i = 0; i < quantidadeAtual; i++) {
+        file << i+1 << ",";
+        file << produtos[i].nome << ",";
+        file << produtos[i].preco << ",";
+        file << produtos[i].quantidade << "," << endl;
+        
+        
+    }
+
+    file.close();  // Fechar o arquivo após a escrita
+    cout << "Produtos salvos com sucesso no arquivo 'produtos.txt'!" << endl;
 }
 
 float calcularValorTotal(const produto produtos[], int quantidadeAtual) {
@@ -68,26 +56,26 @@ float calcularValorTotal(const produto produtos[], int quantidadeAtual) {
     for (int i = 0; i < quantidadeAtual; i++) {  
         valorTotal += produtos[i].preco * produtos[i].quantidade;
     }
-    return valorTotal;
+    return valorTotal; //inicializa a variavel do valor total como 0 e passa pelo array de produtos multiplicando o preco pela quantidade
 }
 
 int main() {
-    produto maxProdutos[100]; // Máximo de produtos
-    int quantidadeAtual = 0; // Armazena a quantidade de produtos no stock
+    produto maxProdutos[100]; // maximo de protudos 
+    int quantidadeAtual = 0; // aramazena a quantidade de protudos no stock
     int escolha;
 
-    do {
+    do {    // percorre o codigo ate a escolha ser o 0
         cout << "Escolha uma opção:" << endl;
         cout << "1. Adicionar Produto" << endl;
         cout << "2. Exibir Produtos" << endl;
         cout << "3. Calcular Valor Total do stock da Loja" << endl;
+        cout << "4. Salvar Produtos em Arquivo" << endl;
         cout << "0. Sair" << endl;
         cin >> escolha;
 
         switch (escolha) {
             case 1:
                 adicionarProduto(maxProdutos, quantidadeAtual);
-                salvarProduto(maxProdutos, quantidadeAtual);
                 break;
             case 2:
                 exibirProdutos(maxProdutos, quantidadeAtual);
@@ -95,11 +83,14 @@ int main() {
             case 3:
                 cout << "Valor total do stock: " << calcularValorTotal(maxProdutos, quantidadeAtual) << endl;
                 break;
+            case 4:
+                salvarProdutos(maxProdutos, quantidadeAtual);
+                break;
             case 0:
                 cout << "A sair..." << endl;
                 break;
             default:
-                cout << "Escolha outra opção." << endl; 
+                cout << "Escolha outra opcao." << endl; 
         }
     } while (escolha != 0);
 
