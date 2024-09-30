@@ -23,7 +23,6 @@ void salvarProduto(produto produtos[], int quantidadeAtual) {
     char escolha;
     cout << "Deseja criar um novo ficheiro (N) ou utilizar o ficheiro existente (E)? ";
     cin >> escolha;
-    int lastId = 0;
 
     ofstream file;
     if (escolha == 'N' || escolha == 'n') {
@@ -43,10 +42,11 @@ void salvarProduto(produto produtos[], int quantidadeAtual) {
     }
 
     for (int i = 0; i < quantidadeAtual; i++) {
-        int id = ++lastId; // Incrementa o ID para cada produto
-        file << id << "," << produtos[i].nome << "," << produtos[i].quantidade << "," 
+        file << i+1 << "," << produtos[i].nome << "," << produtos[i].quantidade << "," 
              << produtos[i].preco << endl;
+        file.close();
     }
+    
     
     
 
