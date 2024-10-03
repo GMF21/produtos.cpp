@@ -33,11 +33,6 @@ void exibirProdutos(const produto produtos[], int quantidadeAtual) {  // Const e
 void salvarProdutos(const produto produtos[], int quantidadeAtual) {
     ofstream file("produtos.txt", ios::app);  // Abrir o arquivo no modo de adicionar (append)
 
-    if (!file.is_open()) {  // Verificar se o arquivo abriu corretamente
-        cout << "Erro ao abrir o arquivo para salvar os produtos." << endl;
-        return;
-    }
-
     for (int i = 0; i < quantidadeAtual; i++) {
         file << i+1 << ",";
         file << produtos[i].nome << ",";
